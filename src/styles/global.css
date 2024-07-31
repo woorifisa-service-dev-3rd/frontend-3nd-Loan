@@ -1,3 +1,5 @@
+/* src/styles/global.css */
+
 /* Regular */
 @font-face {
   font-family: 'Uridaum';
@@ -23,4 +25,14 @@
     url('/font/wooridaum_ttf/WooridaumL.woff') format('woff');
   font-weight: 300;
   font-style: normal;
+}
+
+/* Tailwind CSS 초기화 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 글로벌 스타일 적용 */
+body {
+  @apply font-sans;
 }
