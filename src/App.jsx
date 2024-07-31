@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
-// 상수속성 임포트
+import { useState } from 'react'
+import Authentication from './getLoan/authentication.jsx';
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -15,6 +13,10 @@ import {
   REQUIRED_CREDIT_SCORES,
   LOAN_PROVIDERS
 } from './constants/loanConstants';
+
+function App() {
+  const [count, setCount] = useState(0)
+  // 상수속성 임포트
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
 const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
@@ -611,19 +613,23 @@ const initialLoanProducts = [
   }
 ];
 
-function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <HeaderNav />
+<<<<<<< HEAD
 
+=======
+      <Authentication />
+>>>>>>> dev
       <h1 className="text-3xl font-bold underline">
         Hello world!
       </h1>
       <h1>우리다움체 예제</h1>
       <p>이것은 우리다움체를 사용한 예제입니다.</p>
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     </>
   )
 }
