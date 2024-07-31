@@ -1,43 +1,99 @@
 import React, { useState } from 'react';
+import './authentication.css';
 
 const AuthenticationForm = () => {
   const [name, setName] = useState('');
+  const [idNumber, setIdNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleChange = (e) => {
+  const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleReset = () => {
-    setName('');
+  const handleIdNumberChange = (e) => {
+    setIdNumber(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
   };
 
   return (
-    <section className="css-81pjps e1ai0nff0">
+    <section className="authentication-section">
       <form autoComplete="off">
-        <h1 className="whitespace-pre-line text-head-28 text-gray-100">
-          최저금리를 조회하기 위해 본인 인증이 필요해요
+        <h1 className="form-heading">
+          <strong>최저금리를 조회하기 위해 <br />
+          본인 인증이 필요해요</strong>
         </h1>
-        <p className="pt-12 text-body-15 font-medium text-gray-300">
+        <br />
+        <p className="form-description">
           안심하세요. 입력한 정보는 본인 인증에만 사용돼요.
         </p>
-        <div className="bg-transparent h-20"></div>
-        <div className="css-8l40fo e1kuvs654">
-          <div className="css-1y21tqd el4x4ao4">
-            <div className="css-qzqrxl el4x4ao3">
-              <input
-                id="name"
-                className="text-black-000 css-brz43u el4x4ao2"
-                placeholder="입력하세요"
-                value={name}
-                onChange={handleChange}
-              />
-              <label htmlFor="name" className="css-570n4m e1nw50l10">이름</label>
-            </div>
-            <button type="button" className="css-1fgghp4 el4x4ao1" onClick={handleReset}></button>
+        <div className="spacer-large"></div>
+        <div className="form-group">
+          <div className="input-field-wrapper">
+            <input
+              id="name"
+              className="input-field transparent-placeholder"
+              placeholder="이름"
+              value={name}
+              onChange={handleNameChange}
+            />
+            <input
+              id="id-number"
+              className="input-field transparent-placeholder"
+              placeholder="주민등록번호"
+              value={idNumber}
+              onChange={handleIdNumberChange}
+            />
+            <input
+              id="phone-number"
+              className="input-field transparent-placeholder"
+              placeholder="휴대폰번호"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+            />
           </div>
         </div>
-        <div className="bg-transparent h-12"></div>
-        {/* 추가 입력 필드가 여기에 위치합니다 */}
+        <div className="spacer-medium">
+          <input
+            type="button"
+            className="input-button"
+            value="SKT"
+            onClick={() => handleButtonClick('SKT')}
+          />
+          <input
+            type="button"
+            className="input-button"
+            value="LGU+"
+            onClick={() => handleButtonClick('LGU+')}
+          />
+          <input
+            type="button"
+            className="input-button"
+            value="KT"
+            onClick={() => handleButtonClick('KT')}
+          />
+          <br/>
+          <input
+            type="button"
+            className="input-button"
+            value="SKT 알뜰폰"
+            onClick={() => handleButtonClick('SKT 알뜰폰')}
+          />
+          <input
+            type="button"
+            className="input-button"
+            value="LGU+알뜰폰"
+            onClick={() => handleButtonClick('LGU+알뜰폰')}
+          />
+          <input
+            type="button"
+            className="input-button"
+            value="KT 알뜰폰"
+            onClick={() => handleButtonClick('KT 알뜰폰')}
+          />
+        </div>
       </form>
     </section>
   );
