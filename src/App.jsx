@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './styles/global.css';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,8 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <h1>우리다움체 예제</h1>
+      <p>이것은 우리다움체를 사용한 예제입니다.</p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

@@ -1,0 +1,26 @@
+/* Regular */
+@font-face {
+  font-family: 'Uridaum';
+  src: url('/font/wooridaum_ttf/WooridaumR.ttf') format('truetype'),
+    url('/font/wooridaum_ttf/WooridaumR.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Uridaum';
+  src: url('/font/wooridaum_ttf/WooridaumB.woff2') format('woff2'),
+    url('/font/wooridaum_ttf/WooridaumB.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Light */
+@font-face {
+  font-family: 'Uridaum';
+  src: url('/font/wooridaum_ttf/WooridaumL.woff2') format('woff2'),
+    url('/font/wooridaum_ttf/WooridaumL.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
