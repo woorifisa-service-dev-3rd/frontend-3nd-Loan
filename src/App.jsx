@@ -646,7 +646,7 @@ const initialLoanProducts = [
           <Route path="/car-number" element={<CarNumber />} />
           <Route path="/home-address" element={<HomeAddress />} />
           <Route path="/income" element={<Income />} />
-          <Route path="/want-loan" element={<Wantloan />} />
+          <Route path="/want-loan" element={<Wantloan userData={userData} />} />
         </Routes>
       </Router>
     </>
