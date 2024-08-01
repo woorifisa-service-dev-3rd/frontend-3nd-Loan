@@ -6,8 +6,7 @@ const Wantloan = ({ userData }) => {
 
   // 유저 데이터의 이름.신용점수를 받아서 출력해주는 함수 구현
   const randomId = Math.floor(Math.random() * userData.length) + 1;
-
-  const user = userData.find(user => user.id === randomId);
+  const user = userData[randomId]
 
   if (!user) return <p>유저를 찾을 수 없습니다.</p>;
 
@@ -16,8 +15,7 @@ const Wantloan = ({ userData }) => {
       <br/>
       <br/>
       <br/>
-      <h1 className="form-heading"> <strong>대출 상품이 매칭되었습니다.</strong>
-      </h1>
+      <h1 className="form-heading"> <strong>대출 상품이 매칭되었습니다.</strong></h1>
       <div>
       <p className="product-recommend">대출 상품 추천</p>
       {user ? (
@@ -32,12 +30,6 @@ const Wantloan = ({ userData }) => {
     </>
   );
 
-  }
-// 유저데이터 (이름.신용점수) >= 신용점수 ?  해당하는 아이템 : 없음;
-// 7 ~ 10
-//   <h1 className=“form-heading”>
-//   <strong>대출 상품이 <br/>매칭되었습니다.</strong>
-//   {어쩌고 ? n 이면 아이템.id == n }
-//   </h1>
+}
     
 export default Wantloan;

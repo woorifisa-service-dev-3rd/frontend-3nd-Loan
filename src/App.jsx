@@ -8,7 +8,7 @@ import JobType from './getLoan/jobType.jsx';
 import Collateral from './getLoan/collateral.jsx';
 import Income from './getLoan/income.jsx';
 import Wantloan from './getLoan/wantloan.jsx'
-import CarNumber from './getLoan/CarNumber.jsx';
+import CarNumber from './getLoan/carNumber.jsx'
 import HomeAddress from './getLoan/homeAddress.jsx';
 import {
   PRODUCT_NAMES,
@@ -674,7 +674,6 @@ function App() {
           <Route path="/car-number" element={<CarNumber />} />
           <Route path="/home-address" element={<HomeAddress />} />
           <Route path="/income" element={<Income />} />
-          <Route path="/want-loan" element={<Wantloan />} />
           <Route path="/want-loan" element={<Wantloan userData={userData} />} />
                 <Route path="/LoanList" element={<LoanList />} />
               </Routes>
