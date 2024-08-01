@@ -664,8 +664,7 @@ function App() {
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={Dispatch}>
-              {/* <MainPage/> */}
-              {/* <LoanList/> */}
+              <LoanList/>
               <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/authentication" element={<Authentication />} />
