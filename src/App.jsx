@@ -8,7 +8,7 @@ import JobType from './getLoan/jobType.jsx';
 import Collateral from './getLoan/collateral.jsx';
 import Income from './getLoan/income.jsx';
 import Wantloan from './getLoan/wantloan.jsx'
-import CarNumber from './getLoan/carNumber.jsx';
+import CarNumber from './getLoan/CarNumber.jsx';
 import HomeAddress from './getLoan/homeAddress.jsx';
 import {
   PRODUCT_NAMES,
@@ -658,25 +658,26 @@ function App() {
 
   return (
     <>
-
       <Router>
-        <HeaderNav />
-
+        <HeaderNav />  
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={Dispatch}>
               {/* <LoanList/> */}
               <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/authentication" element={<Authentication />} />
-          <Route path="/job-type" element={<JobType />} />
-          <Route path="/collateral" element={<Collateral />} />
-          <Route path="/car-number" element={<CarNumber />} />
-          <Route path="/home-address" element={<HomeAddress />} />
-          <Route path="/income" element={<Income />} />
-          <Route path="/want-loan" element={<Wantloan userData={userData} />} />
-        </Routes>
-      </Router>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/authentication" element={<Authentication />} />
+                <Route path="/job-type" element={<JobType />} />
+                <Route path="/collateral" element={<Collateral />} />
+                <Route path="/car-number" element={<CarNumber />} />
+                <Route path="/home-address" element={<HomeAddress />} />
+                <Route path="/income" element={<Income />} />
+                <Route path="/want-loan" element={<Wantloan userData={userData} />} />
+              </Routes>
+              </LoanDispatchContext.Provider>
+              </LoanContext.Provider>
+          </section>
+        </Router>
     </>
   )
 }
