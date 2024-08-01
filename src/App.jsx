@@ -692,6 +692,62 @@ const investmentData = [
     minInvestment: 10000,
     duration: "6개월"
   },
+  {
+    id: 4,
+    name: "친환경 에너지 D",
+    description: "태양광 발전소 건설 프로젝트",
+    interestRate: 12.0,
+    minInvestment: 20000,
+    duration: "36개월"
+  },
+  {
+    id: 5,
+    name: "헬스케어 스타트업 E",
+    description: "스마트 웨어러블 기기 개발 스타트업",
+    interestRate: 18.0,
+    minInvestment: 15000,
+    duration: "18개월"
+  },
+  {
+    id: 6,
+    name: "미국 주식 투자 F",
+    description: "테크 주식에 투자하는 미국 주식 펀드",
+    interestRate: 9.5,
+    minInvestment: 5000,
+    duration: "6개월"
+  },
+  {
+    id: 7,
+    name: "에듀테크 G",
+    description: "온라인 교육 플랫폼 구축",
+    interestRate: 11.0,
+    minInvestment: 12000,
+    duration: "12개월"
+  },
+  {
+    id: 8,
+    name: "물류 스타트업 H",
+    description: "자동화 물류 창고 운영 스타트업",
+    interestRate: 14.0,
+    minInvestment: 25000,
+    duration: "24개월"
+  },
+  {
+    id: 9,
+    name: "글로벌 광고 I",
+    description: "디지털 광고 캠페인 및 미디어 매매",
+    interestRate: 16.5,
+    minInvestment: 18000,
+    duration: "12개월"
+  },
+  {
+    id: 10,
+    name: "리조트 개발 J",
+    description: "해변가 리조트 개발 프로젝트",
+    interestRate: 13.0,
+    minInvestment: 30000,
+    duration: "36개월"
+  },
 ]
 
 const reducer = (loans, action) => {
