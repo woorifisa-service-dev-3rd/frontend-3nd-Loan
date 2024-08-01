@@ -675,7 +675,7 @@ function App() {
           <Route path="/home-address" element={<HomeAddress />} />
           <Route path="/income" element={<Income />} />
           <Route path="/want-loan" element={<Wantloan />} />
-                <Route path="/want-loan" element={<Wantloan />} />
+          <Route path="/want-loan" element={<Wantloan userData={userData} />} />
                 <Route path="/LoanList" element={<LoanList />} />
               </Routes>
             </LoanDispatchContext.Provider>
