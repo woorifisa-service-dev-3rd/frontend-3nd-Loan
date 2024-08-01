@@ -1,9 +1,18 @@
-# React + Vite
+# 웅렬우 캐피탈
+대출 및 투자 서비스
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 팀원
+<table>
+  <tr>
+    <td height="140px" align="center"> <a href="https://github.com/AnChanUng"> <img src="https://avatars.githubusercontent.com/u/104750924?v=4" width="140px" />
+      <br /> 안찬웅</a></td>
+    <td height="140px" align="center"> <a href="https://github.com/dlaudfuf33"> <img src="https://avatars.githubusercontent.com/u/108720714?v=4" width="140px" />
+      <br />이명렬</a></td>
+    <td height="140px" align="center"> <a href="https://github.com/kimh7537"> <img src="https://avatars.githubusercontent.com/u/108720714?v=4" width="140px" />
+      <br />김현우</a></td>
 
-Currently, two official plugins are available:
+  </tr>
+</table>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# frontend-3nd-Loan
+## 회고
+https://cookie.tistory.com/
