@@ -1,0 +1,24 @@
+.form-heading {
+    margin-bottom: 2.5rem;
+}
+
+.transparent-text {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+}
+
+.transparent-text:hover {
+    background-color: #e0f7e9;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 0.1rem 0.2rem;
+}
+
+.transparent-text:active {
+    background-color: #c8e6c9;
+    padding: 0.1rem 0.2rem;
+}
