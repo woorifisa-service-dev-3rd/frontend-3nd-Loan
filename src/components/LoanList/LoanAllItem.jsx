@@ -1,6 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const LoanAllItem = ({ loan }) => {
+export const LoanItem = ({ loan }) => {
+
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate('/authentication');
+  };
+
   return (
     <div className="flex justify-center items-center py-2 px-4">
       <a href='#'
@@ -34,6 +42,13 @@ export const LoanAllItem = ({ loan }) => {
           </dl>
         </div>
       </a>
+        <button
+        type="button"
+        onClick={handleNextClick}
+        className="absolute bottom-2 right-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        대출받기
+      </button>
     </div>
   );
 }
