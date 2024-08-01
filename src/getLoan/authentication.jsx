@@ -21,7 +21,8 @@ const AuthenticationForm = () => {
   };
 
   const handleNextClick = () => {
-    navigate('/job-type');
+    
+    navigate("/job-type");
   };
 
   return (

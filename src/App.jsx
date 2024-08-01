@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useReducer } from 'react'
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
@@ -674,7 +674,7 @@ function App() {
           <Route path="/car-number" element={<CarNumber />} />
           <Route path="/home-address" element={<HomeAddress />} />
           <Route path="/income" element={<Income />} />
-          <Route path="/want-loan" element={<Wantloan userData={userData} />} />
+          <Route path="/want-loan" element={<Wantloan />} />
                 <Route path="/LoanList" element={<LoanList />} />
               </Routes>
             </LoanDispatchContext.Provider>
