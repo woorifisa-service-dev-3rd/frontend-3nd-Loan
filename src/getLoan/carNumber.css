@@ -1,0 +1,45 @@
+.car-number-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f9fc;
+}
+
+.form-heading {
+    font-size: 1.75rem;
+    color: #0033a0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.car-number-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.car-number-input:focus {
+    border-color: #0033a0;
+    box-shadow: 0 0 8px rgba(0, 51, 160, 0.2);
+}
+
+.button-link {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #002080;
+}
