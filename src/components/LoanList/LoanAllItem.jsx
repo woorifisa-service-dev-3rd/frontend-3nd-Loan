@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const LoanItem = ({ loan }) => {
+export const LoanAllItem = ({ loan }) => {
 
   const navigate = useNavigate();
 
@@ -11,14 +11,16 @@ export const LoanItem = ({ loan }) => {
 
   return (
     <div className="flex justify-center items-center py-2 px-4">
-      <a href='#'
+      <a href='/'
         className="w-full max-w-4xl flex gap-4 px-4 py-4 border rounded-lg
         bg-white shadow-xl transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-50">
+        <picture className='hidden dark:block'>
+          <img src='/imsilogo.jpeg' alt="은행 로고"
+            className="mr-6 w-full h-auto max-w-4xl" // 가로폭을 최대 4xl로 조정
+          />
+        </picture>
         <picture className='dark:hidden'>
           {/* 여기에 은행 로고 이미지 추가 */}
-        </picture>
-        <picture className='hidden dark:block'>
-          <img src='/imsilogo.jpeg' alt="은행 로고" width="100" height="100" className="mr-6" />
         </picture>
         <div className="flex flex-col gap-4">
           <h3 className="text-gray-900">
@@ -42,7 +44,7 @@ export const LoanItem = ({ loan }) => {
           </dl>
         </div>
       </a>
-        <button
+      <button
         type="button"
         onClick={handleNextClick}
         className="absolute bottom-2 right-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"

@@ -18,12 +18,12 @@ export default function HeaderNav() {
             <i aria-hidden="true" className="mdi mdi-menu text-2xl"></i>
           </button>
           <Link to="/" className="flex items-center">
-            <img src="/imsilogo.jpeg" alt="Nenoe 로고" className="h-8" />
+            <img src="/imsilogo.jpeg" alt="loan&learn 로고" className="h-8" />
           </Link>
         </div>
 
         {/* 중앙 정렬 항목 */}
-        <div className="flex-grow flex justify-center space-x-4 hidden md:flex">
+        <div className="flex-grow flex justify-start space-x-4 hidden md:flex">
           <Link to="/InvestmentList" className="text-gray-700 hover:text-gray-900">
             투자하기
           </Link>
