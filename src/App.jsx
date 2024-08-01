@@ -20,7 +20,7 @@ import {
   REQUIRED_CREDIT_SCORES,
   LOAN_PROVIDERS
 } from './constants/loanConstants';
-import { LoanContext, LoanDispatchContext } from './contexts/LoanContext.jsx';
+import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
 import { MemberContext, MemberDispatchContext } from './contexts/MemberContext.jsx';
 import { InvestmentContext, InvestmentDispatchContext } from './contexts/InvestmentContext';
 import { LoanList } from './components/LoanList/LoanList.jsx';
@@ -788,7 +788,7 @@ function App() {
   return (
     <>
       <Router>
-        <HeaderNav />  
+        <HeaderNav />
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={dispatch}>
@@ -796,8 +796,7 @@ function App() {
                 <MemberDispatchContext.Provider value={memberDispatch}>
                   <InvestmentContext.Provider value={investments}>
                     <InvestmentDispatchContext.Provider value={investmentDispatch}>
-                      {/* <MainPage/> */}
-                      {/* <LoanList/> */}
+                      {/* <LoanList /> */}
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/authentication" element={<Authentication />} />
