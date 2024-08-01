@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './authentication.css';
 
 const AuthenticationForm = () => {
   const [name, setName] = useState('');
   const [idNumber, setIdNumber] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -16,6 +18,10 @@ const AuthenticationForm = () => {
 
   const handlePhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
+  };
+
+  const handleNextClick = () => {
+    navigate('/job-type');
   };
 
   return (
@@ -94,6 +100,7 @@ const AuthenticationForm = () => {
             onClick={() => handleButtonClick('KT 알뜰폰')}
           />
         </div>
+        <button type="button" onClick={handleNextClick} className="button-link">다음</button>
       </form>
     </section>
   );

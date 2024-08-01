@@ -1,8 +1,14 @@
+import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
-import { useState } from 'react'
 import Authentication from './getLoan/authentication.jsx';
+import JobType from './getLoan/jobType.jsx';
+import Collateral from './getLoan/collateral.jsx';
+import Income from './getLoan/income.jsx';
+import Wantloan from './getLoan/wantloan.jsx'
+
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -14,9 +20,22 @@ import {
   LOAN_PROVIDERS
 } from './constants/loanConstants';
 
+function HomePage() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/authentication');
+  };
+
+  return (
+    <div className="home-page">
+      <button onClick={handleButtonClick}>대출시작</button>
+    </div>
+  );
+}
+
 function App() {
   const [count, setCount] = useState(0)
-  // 상수속성 임포트
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
 const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
@@ -615,13 +634,17 @@ const initialLoanProducts = [
 
   return (
     <>
-      <HeaderNav />
-      <Authentication />
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <h1>우리다움체 예제</h1>
-      <p>이것은 우리다움체를 사용한 예제입니다.</p>
+      <Router>
+        <HeaderNav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/job-type" element={<JobType />} />
+          <Route path="/collateral" element={<Collateral />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/want-loan" element={<Wantloan />} />
+        </Routes>
+      </Router>
     </>
   )
 }
