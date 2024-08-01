@@ -6,7 +6,7 @@ const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 10;
+  z-index: 50; /* z-index 수정 */
   top: 20vh;
   left: 0;
   right: 0;
@@ -39,13 +39,12 @@ const HandleBar = styled(motion.div)`
 const ContentWrapper = styled.div`
   height: calc(100% - 48px);
   padding: 10px;
-
   margin-bottom: 60px;
+  overflow-y: auto; /* 추가 */
 `;
 
 const FilterSection = styled.div`
   margin-bottom: 20px;
-  
 
   h3 {
     margin-bottom: 10px;
@@ -77,7 +76,7 @@ const Footer = styled.div`
   right: 0;
   background: white;
   border-top: 1px solid #ddd;
-  z-index: 10;
+  z-index: 50; /* z-index 수정 */
 
   .reset-button {
     padding: 10px 20px;

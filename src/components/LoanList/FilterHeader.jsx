@@ -1,14 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { LoanContext } from "../../contexts/Loancontext";
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
 import {
   PRODUCT_NAMES,
-  DEFAULT_INTEREST_RATES,
-  DEFAULT_MAX_LIMITS,
-  REPAYMENT_PERIODS,
   FEATURES,
   APPLICATION_METHODS,
-  REQUIRED_CREDIT_SCORES,
+  REPAYMENT_PERIODS,
   LOAN_PROVIDERS
 } from '@/constants/loanConstants';
 import * as S from '@/components/BottomSheet/BottomSheet.style';
@@ -17,7 +14,28 @@ const FilterHeader = ({ onFilter }) => {
   const loans = useContext(LoanContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
-  const [selectedSort, setSelectedSort] = useState(null);
+  const [sortState, setSortState] = useState({
+    interestDesc: false,
+    limitDesc: false,
+    creditScoreDesc: false
+  });
+  const [filteredLoans, setFilteredLoans] = useState(loans);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    applyFilterAndSort(selectedFilter, sortState);
+  }, [selectedFilter, sortState, loans]);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -32,128 +50,143 @@ const FilterHeader = ({ onFilter }) => {
   };
 
   const handleSortSelect = (sort) => {
-    setSelectedSort(sort);
-    applySort(sort);
+    const newSortState = { ...sortState, [sort]: !sortState[sort] };
+    setSortState(newSortState);
   };
 
   const handleResetFilter = () => {
     setSelectedFilter(null);
   };
 
-  const applySort = (sort) => {
-    let sortedLoans = [...loans];
+  const allHandleResetFilter = () => {
+    setSelectedFilter(null);
+    setSortState({
+      interestDesc: false,
+      limitDesc: false,
+      creditScoreDesc: false
+    });
+    setFilteredLoans(loans);
+  };
 
-    if (sort === 'interestAsc') {
-      sortedLoans.sort((a, b) => a.interestRate - b.interestRate);
-    } else if (sort === 'interestDesc') {
-      sortedLoans.sort((a, b) => b.interestRate - a.interestRate);
-    } else if (sort === 'limitAsc') {
-      sortedLoans.sort((a, b) => a.maxLimit - b.maxLimit);
-    } else if (sort === 'limitDesc') {
-      sortedLoans.sort((a, b) => b.maxLimit - a.maxLimit);
-    } else if (sort === 'creditScoreAsc') {
-      sortedLoans.sort((a, b) => a.requiredCreditScore - b.requiredCreditScore);
-    } else if (sort === 'creditScoreDesc') {
-      sortedLoans.sort((a, b) => b.requiredCreditScore - a.requiredCreditScore);
+  const applyFilterAndSort = (filter, sortState) => {
+    let result = [...loans];
+
+    if (filter) {
+      result = result.filter((loan) => Object.values(loan).includes(filter));
     }
 
+    if (sortState.interestDesc) {
+      result.sort((a, b) => b.interestRate - a.interestRate);
+    } else if (sortState.limitDesc) {
+      result.sort((a, b) => b.maxLimit - a.maxLimit);
+    } else if (sortState.creditScoreDesc) {
+      result.sort((a, b) => b.requiredCreditScore - a.requiredCreditScore);
+    }
+
+    setFilteredLoans(result);
     if (onFilter) {
-      onFilter(sortedLoans);
+      onFilter(result);
     }
   };
 
   return (
     <div className='bottom'>
-      <S.FilterSection>
-        <button onClick={handleOpenModal}>검색 조건</button>
+      <div className="flex justify-center space-x-2 mb-4">
+        <button onClick={handleOpenModal} className="p-2 bg-blue-500 text-white rounded">검색 조건</button>
         <button
-          className={selectedSort === 'interestDesc' ? 'active' : ''}
+          className={`p-2 ${sortState.interestDesc ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded`}
           onClick={() => handleSortSelect('interestDesc')}
+          disabled={Object.values(sortState).some(state => state && !sortState.interestDesc)}
         >
           금리순
         </button>
         <button
-          className={selectedSort === 'limitDesc' ? 'active' : ''}
+          className={`p-2 ${sortState.limitDesc ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded`}
           onClick={() => handleSortSelect('limitDesc')}
+          disabled={Object.values(sortState).some(state => state && !sortState.limitDesc)}
         >
           한도순
         </button>
         <button
-          className={selectedSort === 'creditScoreDesc' ? 'active' : ''}
+          className={`p-2 ${sortState.creditScoreDesc ? 'bg-blue-500 text-white' : 'bg-gray-300'} rounded`}
           onClick={() => handleSortSelect('creditScoreDesc')}
+          disabled={Object.values(sortState).some(state => state && !sortState.creditScoreDesc)}
         >
           신용 점수순
         </button>
-      </S.FilterSection>
+        <button onClick={allHandleResetFilter} className="p-2 bg-red-500 text-white rounded">초기화</button>
+      </div>
       {isModalOpen && (
-        <BottomSheet onClose={handleCloseModal} filterCount={loans.length}>
-          <S.ContentWrapper>
-            <h3>대출 종류</h3>
-            <S.FilterSection>
-              {Object.values(PRODUCT_NAMES).map((name) => (
-                <button
-                  key={name}
-                  className={selectedFilter === name ? 'active' : ''}
-                  onClick={() => handleFilterSelect(name)}
-                >
-                  {name}
-                </button>
-              ))}
-            </S.FilterSection>
-            <h3>상품 특징</h3>
-            <S.FilterSection>
-              {Object.values(FEATURES).map((feature) => (
-                <button
-                  key={feature}
-                  className={selectedFilter === feature ? 'active' : ''}
-                  onClick={() => handleFilterSelect(feature)}
-                >
-                  {feature}
-                </button>
-              ))}
-            </S.FilterSection>
-            <h3>신청 방법</h3>
-            <S.FilterSection>
-              {Object.values(APPLICATION_METHODS).map((method) => (
-                <button
-                  key={method}
-                  className={selectedFilter === method ? 'active' : ''}
-                  onClick={() => handleFilterSelect(method)}
-                >
-                  {method}
-                </button>
-              ))}
-            </S.FilterSection>
-            <h3>상환 기간</h3>
-            <S.FilterSection>
-              {Object.values(REPAYMENT_PERIODS).map((provider) => (
-                <button
-                  key={provider}
-                  className={selectedFilter === provider ? 'active' : ''}
-                  onClick={() => handleFilterSelect(provider)}
-                >
-                  {provider}
-                </button>
-              ))}
-            </S.FilterSection>
-            <h3>금융권</h3>
-            <S.FilterSection>
-              {Object.values(LOAN_PROVIDERS).map((provider) => (
-                <button
-                  key={provider}
-                  className={selectedFilter === provider ? 'active' : ''}
-                  onClick={() => handleFilterSelect(provider)}
-                >
-                  {provider}
-                </button>
-              ))}
-            </S.FilterSection>
-          </S.ContentWrapper>
-          <S.Footer>
-            <button className="reset-button" onClick={handleResetFilter}>필터 초기화</button>
-            <button className="loan-button" onClick={handleCloseModal}>{loans.length}개 대출 보기</button>
-          </S.Footer>
-        </BottomSheet>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <BottomSheet onClose={handleCloseModal} filterCount={filteredLoans.length}>
+            <S.ContentWrapper className="overflow-y-auto">
+              <h3 className="font-bold text-xl mb-4">대출 종류</h3>
+              <S.FilterSection>
+                {Object.values(PRODUCT_NAMES).map((name) => (
+                  <button
+                    key={name}
+                    className={selectedFilter === name ? 'active' : ''}
+                    onClick={() => handleFilterSelect(name)}
+                  >
+                    {name}
+                  </button>
+                ))}
+              </S.FilterSection>
+              <h3 className="font-bold text-xl mb-4">상품 특징</h3>
+              <S.FilterSection>
+                {Object.values(FEATURES).map((feature) => (
+                  <button
+                    key={feature}
+                    className={selectedFilter === feature ? 'active' : ''}
+                    onClick={() => handleFilterSelect(feature)}
+                  >
+                    {feature}
+                  </button>
+                ))}
+              </S.FilterSection>
+              <h3 className="font-bold text-xl mb-4">신청 방법</h3>
+              <S.FilterSection>
+                {Object.values(APPLICATION_METHODS).map((method) => (
+                  <button
+                    key={method}
+                    className={selectedFilter === method ? 'active' : ''}
+                    onClick={() => handleFilterSelect(method)}
+                  >
+                    {method}
+                  </button>
+                ))}
+              </S.FilterSection>
+              <h3 className="font-bold text-xl mb-4">상환 기간</h3>
+              <S.FilterSection>
+                {Object.values(REPAYMENT_PERIODS).map((provider) => (
+                  <button
+                    key={provider}
+                    className={selectedFilter === provider ? 'active' : ''}
+                    onClick={() => handleFilterSelect(provider)}
+                  >
+                    {provider}
+                  </button>
+                ))}
+              </S.FilterSection>
+              <h3 className="font-bold text-xl mb-4">금융권</h3>
+              <S.FilterSection>
+                {Object.values(LOAN_PROVIDERS).map((provider) => (
+                  <button
+                    key={provider}
+                    className={selectedFilter === provider ? 'active' : ''}
+                    onClick={() => handleFilterSelect(provider)}
+                  >
+                    {provider}
+                  </button>
+                ))}
+              </S.FilterSection>
+            </S.ContentWrapper>
+            <S.Footer>
+              <button className="reset-button" onClick={handleResetFilter}>필터 초기화</button>
+              <button className="loan-button" onClick={handleCloseModal}>{filteredLoans.length}개 대출 보기</button>
+            </S.Footer>
+          </BottomSheet>
+        </div>
       )}
     </div>
   );
