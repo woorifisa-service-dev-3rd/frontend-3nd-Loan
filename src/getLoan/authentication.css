@@ -1,0 +1,110 @@
+.transparent-placeholder::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+}
+
+.input-field-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-field {
+    background-color: white;
+    color: black;
+    border: 2px solid gray;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+}
+
+.input-field-wrapper {
+    width: 100%;
+}
+
+.input-field:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 91, 255, 0.2);
+}
+
+.authentication-section {
+    padding: 20px;
+}
+
+.form-heading {
+    font-size: 1.7rem;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin: 5px;
+}
+
+.form-description {
+    font-size: 1rem;
+    color: gray;
+    margin-bottom: 10px;
+    margin: 12px;
+}
+
+.spacer-large {
+    height: 20px;
+}
+
+.spacer-medium {
+    height: 12px;
+    margin-bottom: 120px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-button {
+    background-color: white;
+    color: gray;
+    border: 2px solid gray;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    border-radius: 12px;
+    padding: 13px 20px;
+    font-size: 1rem;
+    width: 117.0px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    outline: none;
+    appearance: none;
+    margin-top: 5px;
+}
+
+.input-button:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 91, 255, 0.2);
+}
+
+.button-link {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+}
+
+.button-link:hover {
+    background-color: #002080;
+}

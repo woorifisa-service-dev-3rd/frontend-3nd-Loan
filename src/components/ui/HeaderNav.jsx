@@ -1,32 +1,58 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function HeaderNav() {
+  const navigate = useNavigate();
+
+  const handleMenuClick = (val) => {
+    navigate(`/${val}`);
+  };
+
   return (
     <header className="bg-white shadow-md h-16 flex items-center px-4">
       <div className="flex items-center w-full max-w-screen-xl mx-auto">
-        {/* Left-aligned items */}
+        {/* 왼쪽 정렬 항목 */}
         <div className="flex items-center space-x-4">
-          <button type="button" className="md:hidden p-2 rounded-full text-gray-500 hover:text-gray-700">
+          <button
+            type="button"
+            className="md:hidden p-2 rounded-full text-gray-500 hover:text-gray-700"
+            onClick={()=> navigate('/Menu')}
+            aria-label="Menu"
+          >
             <i aria-hidden="true" className="mdi mdi-menu text-2xl"></i>
           </button>
-          <a href="/" className="flex items-center">
-            <img src="/imsilogo.jpeg" alt="Nenoe logo" className="h-8" />
-          </a>
+          <Link to="/" className="flex items-center">
+            <img src="/imsilogo.jpeg" alt="Nenoe 로고" className="h-8" />
+          </Link>
         </div>
 
-        {/* Center-aligned items */}
+        {/* 중앙 정렬 항목 */}
         <div className="flex-grow flex justify-center space-x-4 hidden md:flex">
-          <a href="/invest" className="text-gray-700 hover:text-gray-900">투자하기</a>
-          <a href="https://bit.ly/2ZpfNx4" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900">
-          대출받기</a>
-          
+          <Link to="/invest" className="text-gray-700 hover:text-gray-900">
+            투자하기
+          </Link>
+          <Link to="/authentication" className="text-gray-700 hover:text-gray-900">
+            신용대출
+          </Link>
+          <Link to="/LoanList" className="text-gray-700 hover:text-gray-900">
+            대출상품
+          </Link>
         </div>
 
-        {/* Right-aligned items */}
+        {/* 오른쪽 정렬 항목 */}
         <div className="flex items-center space-x-4 ml-auto">
-          <a href="/notice" className="hidden md:block text-gray-700 hover:text-gray-900">공지사항</a>
-          <a href="/signup" className="hidden md:block text-gray-700 hover:text-gray-900">회원가입</a>
-          <button type="button" className="hidden md:block p-2 rounded-full text-gray-500 hover:text-gray-700">
+          <Link to="/notice" className="hidden md:block text-gray-700 hover:text-gray-900">
+            공지사항
+          </Link>
+          <Link to="/signup" className="hidden md:block text-gray-700 hover:text-gray-900">
+            회원가입
+          </Link>
+          <button
+            type="button"
+            className="hidden md:block p-2 rounded-full text-gray-500 hover:text-gray-700"
+            onClick={() => navigate('/login')}
+            aria-label="Login"
+          >
             로그인
           </button>
         </div>

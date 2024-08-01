@@ -1,0 +1,88 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.form-heading {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.input-area {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 1rem;
+    margin: 30px;
+}
+
+.car-image {
+    width: 40px;
+    height: auto;
+    margin-right: 0.7rem;
+}
+
+.car-text {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.input-area:hover .car-text {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+/* 새로운 스타일 추가 */
+.input-area1 {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: 100%;
+    max-width: 380px;
+}
+
+.apart-image {
+    width: 40px;
+    height: auto;
+    margin-right: 0.7rem;
+}
+
+.apart-text {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.input-area1:hover .apart-text {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.button-link {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 1rem 8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.button-link:hover {
+    background-color: #002080;
+}

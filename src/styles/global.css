@@ -35,4 +35,18 @@
 /* 글로벌 스타일 적용 */
 body {
   @apply font-sans;
+  background-image: url('/bg_visual_port.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Custom scrollbar hidden */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
 }

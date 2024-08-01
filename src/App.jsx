@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useReducer } from 'react'
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
-// 상수속성 임포트
+import Authentication from './getLoan/authentication.jsx';
+import JobType from './getLoan/jobType.jsx';
+import Collateral from './getLoan/collateral.jsx';
+import Income from './getLoan/income.jsx';
+import Wantloan from './getLoan/wantloan.jsx'
+import CarNumber from './getLoan/carNumber.jsx';
+import HomeAddress from './getLoan/homeAddress.jsx';
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -15,6 +20,17 @@ import {
   REQUIRED_CREDIT_SCORES,
   LOAN_PROVIDERS
 } from './constants/loanConstants';
+import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
+import { LoanList } from './components/LoanList/LoanList.jsx';
+import { LoanBody } from './components/LoanList/LoanBody.jsx';
+
+function HomePage() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/authentication');
+  };
+}
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
 const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
@@ -611,38 +627,66 @@ const initialLoanProducts = [
   }
 ];
 
+const reducer = (loans, action) => {
+  switch (action.type) {
+    case "ADD":
+      console.log("Log3 >>", action.newLoan)
+      return [...loans, action.newLoan];
+  }
+
+}
 function App() {
-  const [count, setCount] = useState(0)
+  const [loans, Dispatch] = useReducer(reducer, initialLoanProducts);
+
+  // 새로운 대출 상품 객체를 추가하는 함수
+  function addNewLoanProduct(id, name, interestRate, maxLimit, repaymentPeriod, features, applicationMethods, requiredCreditScore, provider) {
+    // 새로운 대출 상품 객체 생성
+    const newLoanProduct = {
+      id, // 대출 상품의 고유 식별자
+      name, // 대출 상품 이름
+      interestRate, // 기본 이자율
+      maxLimit, // 최대 대출 한도
+      repaymentPeriod, // 상환 기간
+      features, // 대출 상품의 특징 배열
+      applicationMethods, // 대출 신청 방법 배열
+      requiredCreditScore, // 대출에 필요한 신용 점수
+      provider // 대출 제공자
+    };
+
+    // 새로운 대출 상품 객체를 배열에 추가
+    newLoanProduct.push(newLoanProduct);
+  }
 
   return (
     <>
-      <HeaderNav />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <h1>우리다움체 예제</h1>
-      <p>이것은 우리다움체를 사용한 예제입니다.</p>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <Router>
+        <HeaderNav />
+
+        <section>
+          <LoanContext.Provider value={loans}>
+            <LoanDispatchContext.Provider value={Dispatch}>
+              {/* <MainPage/> */}
+              {/* <LoanList/> */}
+              <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/job-type" element={<JobType />} />
+          <Route path="/collateral" element={<Collateral />} />
+          <Route path="/car-number" element={<CarNumber />} />
+          <Route path="/home-address" element={<HomeAddress />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/want-loan" element={<Wantloan />} />
+                <Route path="/want-loan" element={<Wantloan />} />
+                <Route path="/LoanList" element={<LoanList />} />
+              </Routes>
+            </LoanDispatchContext.Provider>
+          </LoanContext.Provider>
+        </section>
+      </Router>
     </>
   )
 }
 
-export default App
+
+export default App;
