@@ -22,6 +22,7 @@ import {
 } from './constants/loanConstants';
 import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
 import { LoanList } from './components/LoanList/LoanList.jsx';
+import { LoanBody } from './components/LoanList/LoanBody.jsx';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -663,21 +664,24 @@ function App() {
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={Dispatch}>
+              {/* <MainPage/> */}
               {/* <LoanList/> */}
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/authentication" element={<Authentication />} />
-                <Route path="/job-type" element={<JobType />} />
-                <Route path="/collateral" element={<Collateral />} />
-                <Route path="/car-number" element={<CarNumber />} />
-                <Route path="/home-address" element={<HomeAddress />} />
-                <Route path="/income" element={<Income />} />
-                <Route path="/want-loan" element={<Wantloan userData={userData} />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/job-type" element={<JobType />} />
+          <Route path="/collateral" element={<Collateral />} />
+          <Route path="/car-number" element={<CarNumber />} />
+          <Route path="/home-address" element={<HomeAddress />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/want-loan" element={<Wantloan />} />
+                <Route path="/want-loan" element={<Wantloan />} />
+                <Route path="/LoanList" element={<LoanList />} />
               </Routes>
-              </LoanDispatchContext.Provider>
-              </LoanContext.Provider>
-          </section>
-        </Router>
+            </LoanDispatchContext.Provider>
+          </LoanContext.Provider>
+        </section>
+      </Router>
     </>
   )
 }

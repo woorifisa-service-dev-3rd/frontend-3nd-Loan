@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function HeaderNav() {
   const navigate = useNavigate();
 
-  const handleMenuClick = () => {
-    navigate('/authentication');
+  const handleMenuClick = (val) => {
+    navigate(`/${val}`);
   };
 
   return (
@@ -16,7 +16,7 @@ export default function HeaderNav() {
           <button
             type="button"
             className="md:hidden p-2 rounded-full text-gray-500 hover:text-gray-700"
-            onClick={handleMenuClick}
+            onClick={()=> navigate('/Menu')}
             aria-label="Menu"
           >
             <i aria-hidden="true" className="mdi mdi-menu text-2xl"></i>
@@ -32,18 +32,21 @@ export default function HeaderNav() {
             투자하기
           </Link>
           <Link to="/authentication" className="text-gray-700 hover:text-gray-900">
-            대출받기
+            신용대출
+          </Link>
+          <Link to="/LoanList" className="text-gray-700 hover:text-gray-900">
+            대출상품
           </Link>
         </div>
 
         {/* 오른쪽 정렬 항목 */}
         <div className="flex items-center space-x-4 ml-auto">
-          <a href="/notice" className="hidden md:block text-gray-700 hover:text-gray-900">
+          <Link to="/notice" className="hidden md:block text-gray-700 hover:text-gray-900">
             공지사항
-          </a>
-          <a href="/signup" className="hidden md:block text-gray-700 hover:text-gray-900">
+          </Link>
+          <Link to="/signup" className="hidden md:block text-gray-700 hover:text-gray-900">
             회원가입
-          </a>
+          </Link>
           <button
             type="button"
             className="hidden md:block p-2 rounded-full text-gray-500 hover:text-gray-700"
