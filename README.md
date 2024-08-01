@@ -1,4 +1,4 @@
-# 웅렬우 캐피탈![image](https://github.com/user-attachments/assets/7bceda93-fcae-4826-93cc-d03761378d27)
+# 웅렬우 캐피탈data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
 대출 및 투자 서비스
 
 ## 팀원
