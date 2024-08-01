@@ -27,11 +27,11 @@ const AuthenticationForm = () => {
   return (
     <section className="authentication-section">
       <form autoComplete="off">
-        <h1 className="form-heading">
+        <br/>
+        <h2 className="form-heading">
           <strong>최저금리를 조회하기 위해 <br />
           본인 인증이 필요해요</strong>
-        </h1>
-        <br />
+        </h2>
         <p className="form-description">
           안심하세요. 입력한 정보는 본인 인증에만 사용돼요.
         </p>

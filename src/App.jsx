@@ -8,6 +8,8 @@ import JobType from './getLoan/jobType.jsx';
 import Collateral from './getLoan/collateral.jsx';
 import Income from './getLoan/income.jsx';
 import Wantloan from './getLoan/wantloan.jsx'
+import CarNumber from './getLoan/carNumber.jsx';
+import HomeAddress from './getLoan/homeAddress.jsx';
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -660,17 +662,21 @@ function App() {
 
       <Router>
         <HeaderNav />
+
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={Dispatch}>
               {/* <MainPage/> */}
               {/* <LoanList/> */}
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/authentication" element={<Authentication />} />
-                <Route path="/job-type" element={<JobType />} />
-                <Route path="/collateral" element={<Collateral />} />
-                <Route path="/income" element={<Income />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/job-type" element={<JobType />} />
+          <Route path="/collateral" element={<Collateral />} />
+          <Route path="/car-number" element={<CarNumber />} />
+          <Route path="/home-address" element={<HomeAddress />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/want-loan" element={<Wantloan />} />
                 <Route path="/want-loan" element={<Wantloan />} />
                 <Route path="/LoanList" element={<LoanList />} />
               </Routes>
