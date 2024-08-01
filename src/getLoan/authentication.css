@@ -1,147 +1,110 @@
-/* Placeholder 스타일 */
 .transparent-placeholder::placeholder {
     color: rgba(0, 0, 0, 0.5);
-    /* 반투명한 색상 (0.5는 50% 투명도) */
     font-size: 1.2rem;
-    /* 텍스트 크기 조정 */
     font-family: Arial, sans-serif;
-    /* 폰트 패밀리 설정 */
 }
 
-/* 입력 필드 래퍼 스타일 */
 .input-field-wrapper {
     position: relative;
-    /* 상대 위치를 사용하여 자식 요소를 절대 위치로 배치할 수 있도록 설정 */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    /* 입력 필드 사이의 간격 */
 }
 
-/* 입력 필드 스타일 */
 .input-field {
     background-color: white;
-    /* 입력 필드 배경색 */
     color: black;
-    /* 텍스트 색상 */
     border: 2px solid gray;
-    /* 회색 테두리 */
     border-radius: 12px;
-    /* 둥근 모서리 */
-    padding: 14px 20px;
-    /* 입력 필드 여백 */
+    padding: 10px 20px;
     font-size: 1.2rem;
-    /* 입력 텍스트 크기 */
     outline: none;
-    /* 포커스 시 아웃라인 제거 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* 입력 필드 그림자 */
-    width: 500px;
-    /* 고정 너비 */
+    width: 350px;
     box-sizing: border-box;
-    /* 테두리와 패딩을 포함한 너비 계산 */
     margin-bottom: 7px;
-    /* 추가: 입력 필드와 버튼 사이의 간격 조정 */
 }
 
 .input-field-wrapper {
     width: 100%;
-    /* 부모 요소의 너비를 100%로 설정 */
 }
 
-/* 입력 필드 포커스 스타일 */
 .input-field:focus {
     border-color: #0056b3;
-    /* 포커스 시 테두리 색상 조정 */
     box-shadow: 0 0 8px rgba(0, 91, 255, 0.2);
-    /* 포커스 시 그림자 색상 조정 */
 }
 
-/* 섹션 스타일 */
 .authentication-section {
     padding: 20px;
-    /* 섹션에 여백 추가 */
 }
 
-/* 제목 스타일 */
 .form-heading {
-    font-size: 2rem;
-    /* 제목 크기 조정 */
+    font-size: 1.7rem;
     color: #000000;
     font-weight: bold;
     margin-bottom: 10px;
-    /* 제목과 다음 요소 사이의 간격 */
+    margin: 5px;
 }
 
-/* 설명 텍스트 스타일 */
 .form-description {
     font-size: 1rem;
-    /* 설명 텍스트 크기 조정 */
     color: gray;
-    /* 설명 텍스트 색상 */
-    margin-bottom: 20px;
-    /* 설명 텍스트와 다음 요소 사이의 간격 */
+    margin-bottom: 10px;
+    margin: 12px;
 }
 
-/* 여백 조정 클래스 */
 .spacer-large {
     height: 20px;
-    /* 큰 여백 */
 }
 
 .spacer-medium {
     height: 12px;
-    /* 중간 여백 */
+    margin-bottom: 120px;
 }
 
-/* 폼 그룹 스타일 */
 .form-group {
     display: flex;
     flex-direction: column;
-    /* 자식 요소들을 수직으로 배치 */
     gap: 12px;
-    /* 입력 필드와 레이블 사이의 간격 */
 }
 
 .input-button {
     background-color: white;
-    /* 흰색 배경 */
-    color: black;
-    /* 검은색 텍스트 */
+    color: gray;
     border: 2px solid gray;
-    /* 전체 테두리 */
     border-top: 2px solid gray;
-    /* 위쪽 테두리 */
     border-bottom: 2px solid gray;
-    /* 아래쪽 테두리 */
     border-radius: 12px;
-    /* 둥근 모서리 */
-    padding: 14px 20px;
-    /* 입력 필드 여백 */
-    font-size: 1.3rem;
-    /* 텍스트 크기 */
-    width: 166.6px;
-    /* 고정 너비 */
+    padding: 13px 20px;
+    font-size: 1rem;
+    width: 117.0px;
     text-align: center;
-    /* 텍스트 중앙 정렬 */
     cursor: pointer;
-    /* 클릭 시 커서 모양 변경 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* 그림자 */
     box-sizing: border-box;
-    /* 테두리와 패딩을 포함한 너비 계산 */
     outline: none;
-    /* 포커스 시 아웃라인 제거 */
     appearance: none;
-    /* 브라우저 기본 스타일 제거 */
     margin-top: 5px;
-    /* 추가: 버튼 위쪽 간격 조정 */
 }
 
 .input-button:focus {
     border-color: #0056b3;
-    /* 포커스 시 테두리 색상 */
     box-shadow: 0 0 8px rgba(0, 91, 255, 0.2);
-    /* 포커스 시 그림자 색상 */
+}
+
+.button-link {
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+}
+
+.button-link:hover {
+    background-color: #002080;
 }

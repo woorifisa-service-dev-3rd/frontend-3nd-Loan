@@ -4,6 +4,8 @@ import { LoanItem } from "./LoanItem";
 import FilterHeader from "@/components/LoanList/FilterHeader";
 import DefaultLayout from "../../layouts/DefaultLayout";
 
+
+
 export const LoanList = () => {
   const loans = useContext(LoanContext);
   const [filteredLoans, setFilteredLoans] = useState(loans);
@@ -30,6 +32,6 @@ export const LoanList = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 }
