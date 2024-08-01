@@ -6,3 +6,6 @@ export const LoanContext = createContext();
 export const LoanDispatchContext = createContext();
 
 
+// MemberContext를 생성합니다.
+const MemberContext = createContext();
+const MemberDispatchContext = createContext();

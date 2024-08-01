@@ -1,9 +1,13 @@
-
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useReducer } from 'react'
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
-import { useState, useReducer } from 'react'
 import Authentication from './getLoan/authentication.jsx';
+import JobType from './getLoan/jobType.jsx';
+import Collateral from './getLoan/collateral.jsx';
+import Income from './getLoan/income.jsx';
+import Wantloan from './getLoan/wantloan.jsx'
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -17,6 +21,13 @@ import {
 import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
 import { LoanList } from './components/LoanList/LoanList.jsx';
 
+function HomePage() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/authentication');
+  };
+}
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
 const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
@@ -622,7 +633,6 @@ const reducer = (loans, action) => {
 
 }
 function App() {
-  // 상수속성 임포트
   const [loans, Dispatch] = useReducer(reducer, initialLoanProducts);
 
   // 새로운 대출 상품 객체를 추가하는 함수
@@ -644,29 +654,31 @@ function App() {
     newLoanProduct.push(newLoanProduct);
   }
 
-
-
-
   return (
     <>
-    
-      <HeaderNav />
-      <section>
-        {/* <Authentication>
-      </Authentication> */}
-        <LoanContext.Provider value={loans}>
-          <LoanDispatchContext.Provider value={Dispatch}>
-            <LoanList>
 
-            </LoanList>
-          </LoanDispatchContext.Provider>
-        </LoanContext.Provider>
-      </section>
+      <Router>
+        <HeaderNav />
+        <section>
+          <LoanContext.Provider value={loans}>
+            <LoanDispatchContext.Provider value={Dispatch}>
+              {/* <LoanList/> */}
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/authentication" element={<Authentication />} />
+                <Route path="/job-type" element={<JobType />} />
+                <Route path="/collateral" element={<Collateral />} />
+                <Route path="/income" element={<Income />} />
+                <Route path="/want-loan" element={<Wantloan />} />
+              </Routes>
 
-
-
+            </LoanDispatchContext.Provider>
+          </LoanContext.Provider>
+        </section>
+      </Router>
     </>
   )
 }
+
 
 export default App;
