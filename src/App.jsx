@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useReducer } from 'react'
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
@@ -10,7 +10,6 @@ import Income from './getLoan/income.jsx';
 import Wantloan from './getLoan/wantloan.jsx'
 import CarNumber from './getLoan/carNumber.jsx';
 import HomeAddress from './getLoan/homeAddress.jsx';
-
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -21,6 +20,8 @@ import {
   REQUIRED_CREDIT_SCORES,
   LOAN_PROVIDERS
 } from './constants/loanConstants';
+import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
+import { LoanList } from './components/LoanList/LoanList.jsx';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -28,16 +29,7 @@ function HomePage() {
   const handleButtonClick = () => {
     navigate('/authentication');
   };
-
-  return (
-    <div className="home-page">
-      <button onClick={handleButtonClick}>대출시작</button>
-    </div>
-  );
 }
-
-function App() {
-  const [count, setCount] = useState(0)
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
 const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
@@ -634,11 +626,47 @@ const initialLoanProducts = [
   }
 ];
 
+const reducer = (loans, action) => {
+  switch (action.type) {
+    case "ADD":
+      console.log("Log3 >>", action.newLoan)
+      return [...loans, action.newLoan];
+  }
+
+}
+function App() {
+  const [loans, Dispatch] = useReducer(reducer, initialLoanProducts);
+
+  // 새로운 대출 상품 객체를 추가하는 함수
+  function addNewLoanProduct(id, name, interestRate, maxLimit, repaymentPeriod, features, applicationMethods, requiredCreditScore, provider) {
+    // 새로운 대출 상품 객체 생성
+    const newLoanProduct = {
+      id, // 대출 상품의 고유 식별자
+      name, // 대출 상품 이름
+      interestRate, // 기본 이자율
+      maxLimit, // 최대 대출 한도
+      repaymentPeriod, // 상환 기간
+      features, // 대출 상품의 특징 배열
+      applicationMethods, // 대출 신청 방법 배열
+      requiredCreditScore, // 대출에 필요한 신용 점수
+      provider // 대출 제공자
+    };
+
+    // 새로운 대출 상품 객체를 배열에 추가
+    newLoanProduct.push(newLoanProduct);
+  }
+
   return (
     <>
+
       <Router>
         <HeaderNav />
-        <Routes>
+
+        <section>
+          <LoanContext.Provider value={loans}>
+            <LoanDispatchContext.Provider value={Dispatch}>
+              {/* <LoanList/> */}
+              <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/authentication" element={<Authentication />} />
           <Route path="/job-type" element={<JobType />} />
@@ -653,4 +681,5 @@ const initialLoanProducts = [
   )
 }
 
-export default App
+
+export default App;
