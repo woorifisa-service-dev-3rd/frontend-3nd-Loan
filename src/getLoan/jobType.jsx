@@ -14,9 +14,9 @@ const JobType = () => {
       <>
         <section className="job-section">
           <h1 className="form-heading">
-            <p>ㅤ</p>
             <strong>직업을 선택하세요</strong>
           </h1>
+          <br/>
 
           <p className="transparent-text" onClick={handleNavigate}>정규직 직장인</p>
           <p className="transparent-text" onClick={handleNavigate}>계약직 직장인</p>
