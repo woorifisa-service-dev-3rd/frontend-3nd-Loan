@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { LoanContext } from "../../contexts/Loancontext";
-import { LoanItem } from "./LoanItem";
+import { LoanAllItem } from "./LoanAllItem";
+import { LoanContext } from "../../contexts/LoanContext";
 
 
 
@@ -16,7 +16,7 @@ export const LoanList = () => {
             <ul className="px-0 my-0 overflow-y-auto h-full scrollbar-hidden">
               {loans && loans.length > 0 ? (
                 loans.map((loan, index) => (
-                  <LoanItem key={index} loan={loan} />
+                  <LoanAllItem key={index} loan={loan} />
                 ))
               ) : (
                 <p>대출 정보가 없습니다.</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LoanItem = ({ loan }) => {
+export const LoanAllItem = ({ loan }) => {
   return (
     <div className="flex justify-center items-center py-2 px-4">
       <a href='#'

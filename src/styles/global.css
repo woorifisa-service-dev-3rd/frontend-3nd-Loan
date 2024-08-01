@@ -50,3 +50,31 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
 }
+
+/* styles/globals.css or equivalent */
+.toast-with-progress .Toastify__toast {
+  position: relative;
+}
+
+.toast-with-progress .Toastify__toast-body {
+  padding-bottom: 30px;
+}
+
+.toast-with-progress .progress-ring {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  transform: translateY(5px);
+}
+
+.toast-with-progress .progress-ring__circle {
+  stroke: #4d88ff;
+  stroke-width: 10;
+  fill: none;
+  stroke-dasharray: 100, 100;
+  stroke-dashoffset: 0;
+  animation: progress 2s linear;
+}
+

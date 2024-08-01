@@ -20,9 +20,49 @@ import {
   REQUIRED_CREDIT_SCORES,
   LOAN_PROVIDERS
 } from './constants/loanConstants';
-import { LoanContext, LoanDispatchContext } from './contexts/Loancontext.jsx';
+import { LoanContext, LoanDispatchContext } from './contexts/LoanContext.jsx';
+import { MemberContext, MemberDispatchContext } from './contexts/MemberContext.jsx';
+import { InvestmentContext, InvestmentDispatchContext } from './contexts/InvestmentContext';
 import { LoanList } from './components/LoanList/LoanList.jsx';
-import { LoanBody } from './components/LoanList/LoanBody.jsx';
+import { InvestmentList } from './components/Investment/InvestmentList.jsx';
+
+
+
+
+
+
+// 대출 리듀서
+const loanReducer = (loans, action) => {
+  switch (action.type) {
+    case "ADD":
+      return [...loans, action.newLoan];
+    // 다른 액션 타입을 추가할 수 있습니다.
+    default:
+      return loans;
+  }
+};
+
+// 멤버 리듀서
+const memberReducer = (members, action) => {
+  switch (action.type) {
+    case "ADD_MEMBER":
+      return [...members, action.newMember];
+    // 다른 액션 타입을 추가할 수 있습니다.
+    default:
+      return members;
+  }
+};
+
+// 투자 리듀서
+const investmentReducer = (investments, action) => {
+  switch (action.type) {
+    case "ADD_INVESTMENT":
+      return [...investments, action.newInvestment];
+    // 다른 액션 타입을 추가할 수 있습니다.
+    default:
+      return investments;
+  }
+};
 
 function HomePage() {
   const navigate = useNavigate();
@@ -33,9 +73,9 @@ function HomePage() {
 }
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
-const getRandomCreditScore = () => Math.floor(Math.random() * (850 - 300 + 1)) + 300;
+const getRandomCreditScore = () => Math.floor(Math.random() * (1000 - 250 + 1)) + 300;
 
-const userData = [
+const initialMembers = [
   {
     "id": 1,
     "name": "유정호",
@@ -627,6 +667,33 @@ const initialLoanProducts = [
   }
 ];
 
+const investmentData = [
+  {
+    id: 1,
+    name: "부동산 프로젝트 A",
+    description: "서울 강남구에 위치한 오피스텔 개발 프로젝트",
+    interestRate: 10.5,
+    minInvestment: 10000,
+    duration: "12개월"
+  },
+  {
+    id: 2,
+    name: "스타트업 B",
+    description: "AI 기반 헬스케어 스타트업",
+    interestRate: 15.0,
+    minInvestment: 10000,
+    duration: "24개월"
+  },
+  {
+    id: 3,
+    name: "개인 대출 C",
+    description: "중신용 개인 대출",
+    interestRate: 8.0,
+    minInvestment: 10000,
+    duration: "6개월"
+  },
+]
+
 const reducer = (loans, action) => {
   switch (action.type) {
     case "ADD":
@@ -636,7 +703,12 @@ const reducer = (loans, action) => {
 
 }
 function App() {
-  const [loans, Dispatch] = useReducer(reducer, initialLoanProducts);
+  const [loans, dispatch] = useReducer(loanReducer, initialLoanProducts);
+  const [members, memberDispatch] = useReducer(memberReducer, initialMembers);
+  const [investments, investmentDispatch] = useReducer(investmentReducer, investmentData);
+
+
+
 
   // 새로운 대출 상품 객체를 추가하는 함수
   function addNewLoanProduct(id, name, interestRate, maxLimit, repaymentPeriod, features, applicationMethods, requiredCreditScore, provider) {
@@ -665,21 +737,30 @@ function App() {
 
         <section>
           <LoanContext.Provider value={loans}>
-            <LoanDispatchContext.Provider value={Dispatch}>
-              {/* <MainPage/> */}
-              {/* <LoanList/> */}
-              <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/authentication" element={<Authentication />} />
-          <Route path="/job-type" element={<JobType />} />
-          <Route path="/collateral" element={<Collateral />} />
-          <Route path="/car-number" element={<CarNumber />} />
-          <Route path="/home-address" element={<HomeAddress />} />
-          <Route path="/income" element={<Income />} />
-          <Route path="/want-loan" element={<Wantloan />} />
-                <Route path="/want-loan" element={<Wantloan />} />
-                <Route path="/LoanList" element={<LoanList />} />
-              </Routes>
+            <LoanDispatchContext.Provider value={dispatch}>
+              <MemberContext.Provider value={members}>
+                <MemberDispatchContext.Provider value={memberDispatch}>
+                  <InvestmentContext.Provider value={investments}>
+                    <InvestmentDispatchContext.Provider value={investmentDispatch}>
+                      {/* <MainPage/> */}
+                      {/* <LoanList/> */}
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/authentication" element={<Authentication />} />
+                        <Route path="/job-type" element={<JobType />} />
+                        <Route path="/collateral" element={<Collateral />} />
+                        <Route path="/car-number" element={<CarNumber />} />
+                        <Route path="/home-address" element={<HomeAddress />} />
+                        <Route path="/income" element={<Income />} />
+                        <Route path="/want-loan" element={<Wantloan />} />
+                        <Route path="/LoanList" element={<LoanList />} />
+                        <Route path="/InvestmentList" element={<InvestmentList />} />
+                      </Routes>
+
+                    </InvestmentDispatchContext.Provider>
+                  </InvestmentContext.Provider>
+                </MemberDispatchContext.Provider>
+              </MemberContext.Provider>
             </LoanDispatchContext.Provider>
           </LoanContext.Provider>
         </section>
