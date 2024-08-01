@@ -12,9 +12,8 @@ export const LoanList = () => {
     <div className="min-h-screen flex justify-center items-center p-1">
       <div className="w-screen h-screen flex flex-col">
         <div className="flex-grow overflow-hidden">
-          {console.log("loans + " + loans)}
           <DefaultLayout>
-            <FilterHeader loans={loans} />
+            <FilterHeader/>
           </DefaultLayout>
           <ul className="px-0 my-0 overflow-y-auto h-full scrollbar-hidden">
             {loans.map(loan =>

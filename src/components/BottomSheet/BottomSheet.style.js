@@ -39,13 +39,13 @@ const HandleBar = styled(motion.div)`
 const ContentWrapper = styled.div`
   height: calc(100% - 48px);
   padding: 10px;
-  overflow-y: auto; /* 스크롤 추가 */
+
   margin-bottom: 60px;
 `;
 
 const FilterSection = styled.div`
   margin-bottom: 20px;
-  text-align: left;
+  
 
   h3 {
     margin-bottom: 10px;

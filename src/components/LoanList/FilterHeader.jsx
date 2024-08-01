@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import { useContext } from "react";
+import { LoanContext } from "../../contexts/Loancontext";
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import { PRODUCT_NAMES, FEATURES, APPLICATION_METHODS, LOAN_PROVIDERS, DEFAULT_INTEREST_RATES, DEFAULT_MAX_LIMITS, REQUIRED_CREDIT_SCORES, LEGAL_INTEREST_LIMITS, REPAYMENT_PERIODS } from '@/constants/loanConstants';
+import {
+  PRODUCT_NAMES,
+  DEFAULT_INTEREST_RATES,
+  DEFAULT_MAX_LIMITS,
+  REPAYMENT_PERIODS,
+  FEATURES,
+  APPLICATION_METHODS,
+  REQUIRED_CREDIT_SCORES,
+  LOAN_PROVIDERS
+} from '@/constants/loanConstants';
 import * as S from '@/components/BottomSheet/BottomSheet.style';
 
-const FilterHeader = ({loans}) => {
+const FilterHeader = () => {
+
+  const loans = useContext(LoanContext);
+  console.log(`log : ${loans}`);
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [selectedSort, setSelectedSort] = useState(null);
@@ -29,7 +45,9 @@ const FilterHeader = ({loans}) => {
   };
 
   const sortedLoans = [...loans];
+
   if (selectedSort === 'interestAsc') {
+      console.log("sort test");
       sortedLoans.sort((a, b) => DEFAULT_INTEREST_RATES[a.name] - DEFAULT_INTEREST_RATES[b.name]);
   } else if (selectedSort === 'interestDesc') {
       sortedLoans.sort((a, b) => DEFAULT_INTEREST_RATES[b.name] - DEFAULT_INTEREST_RATES[a.name]);
@@ -41,11 +59,12 @@ const FilterHeader = ({loans}) => {
       sortedLoans.sort((a, b) => REQUIRED_CREDIT_SCORES[a.name] - REQUIRED_CREDIT_SCORES[b.name]);
   } else if (selectedSort === 'creditScoreDesc') {
       sortedLoans.sort((a, b) => REQUIRED_CREDIT_SCORES[b.name] - REQUIRED_CREDIT_SCORES[a.name]);
-  } else if (selectedSort === 'interestLimitAsc') {
-      sortedLoans.sort((a, b) => LEGAL_INTEREST_LIMITS[a.name] - LEGAL_INTEREST_LIMITS[b.name]);
-  } else if (selectedSort === 'interestLimitDesc') {
-      sortedLoans.sort((a, b) => LEGAL_INTEREST_LIMITS[b.name] - LEGAL_INTEREST_LIMITS[a.name]);
   }
+  // } else if (selectedSort === 'interestLimitAsc') {
+  //     sortedLoans.sort((a, b) => LEGAL_INTEREST_LIMITS[a.name] - LEGAL_INTEREST_LIMITS[b.name]);
+  // } else if (selectedSort === 'interestLimitDesc') {
+  //     sortedLoans.sort((a, b) => LEGAL_INTEREST_LIMITS[b.name] - LEGAL_INTEREST_LIMITS[a.name]);
+  // }
 
 
   const filteredLoans = selectedFilter ? sortedLoans.filter((loans) =>
@@ -55,47 +74,46 @@ const FilterHeader = ({loans}) => {
   return (
       <div className='bottom'>
         <S.FilterSection>
-          <button onClick={handleOpenModal}>대출 종류</button>
+          <button onClick={handleOpenModal}>검색 조건</button>
         </S.FilterSection>
         <S.FilterSection>
-                <h3>정렬 기준</h3>
-                <button
+                {/* <button
                   className={selectedSort === 'interestAsc' ? 'active' : ''}
                   onClick={() => handleSortSelect('interestAsc')}
                 >
                   금리순 (오름차순)
-                </button>
+                </button> */}
                 <button
                   className={selectedSort === 'interestDesc' ? 'active' : ''}
                   onClick={() => handleSortSelect('interestDesc')}
                 >
-                  금리순 (내림차순)
+                  금리순
                 </button>
-                <button
+                {/* <button
                   className={selectedSort === 'limitAsc' ? 'active' : ''}
                   onClick={() => handleSortSelect('limitAsc')}
                 >
                   한도순 (오름차순)
-                </button>
+                </button> */}
                 <button
                   className={selectedSort === 'limitDesc' ? 'active' : ''}
                   onClick={() => handleSortSelect('limitDesc')}
                 >
-                  한도순 (내림차순)
+                  한도순
                 </button>
-                <button
+                {/* <button
                   className={selectedSort === 'creditScoreAsc' ? 'active' : ''}
                   onClick={() => handleSortSelect('creditScoreAsc')}
               >
                   신용 점수순 (오름차순)
-              </button>
+              </button> */}
               <button
                   className={selectedSort === 'creditScoreDesc' ? 'active' : ''}
                   onClick={() => handleSortSelect('creditScoreDesc')}
               >
-                  신용 점수순 (내림차순)
+                  신용 점수순
               </button>
-              <button
+              {/* <button
                   className={selectedSort === 'interestLimitAsc' ? 'active' : ''}
                   onClick={() => handleSortSelect('interestLimitAsc')}
               >
@@ -106,13 +124,14 @@ const FilterHeader = ({loans}) => {
                   onClick={() => handleSortSelect('interestLimitDesc')}
               >
                   이자율 상한선순 (내림차순)
-              </button>
+              </button> */}
               </S.FilterSection>
         {isModalOpen && (
           <BottomSheet onClose={handleCloseModal} filterCount={filteredLoans.length}>
             <S.ContentWrapper>
+                
+              <h3>대출 종류</h3>
               <S.FilterSection>
-                <h3>대출 종류</h3>
                 {Object.values(PRODUCT_NAMES).map((name) => (
                   <button
                     key={name}
@@ -123,8 +142,9 @@ const FilterHeader = ({loans}) => {
                   </button>
                 ))}
               </S.FilterSection>
+              
+              <h3>상품 특징</h3>
               <S.FilterSection>
-                <h3>상품 특징</h3>
                 {Object.values(FEATURES).map((feature) => (
                   <button
                     key={feature}
@@ -135,8 +155,9 @@ const FilterHeader = ({loans}) => {
                   </button>
                 ))}
               </S.FilterSection>
+              
+              <h3>신청 방법</h3>
               <S.FilterSection>
-                <h3>신청 방법</h3>
                 {Object.values(APPLICATION_METHODS).map((method) => (
                   <button
                     key={method}
@@ -147,8 +168,9 @@ const FilterHeader = ({loans}) => {
                   </button>
                 ))}
               </S.FilterSection>
+              
+              <h3>상환 기간</h3>
               <S.FilterSection>
-                <h3>상환 기간</h3>
                 {Object.values(REPAYMENT_PERIODS).map((provider) => (
                   <button
                   key={provider}
@@ -159,8 +181,9 @@ const FilterHeader = ({loans}) => {
                   </button>
                 ))}
               </S.FilterSection>
+                
+              <h3>금융권</h3>
               <S.FilterSection>
-                  <h3>금융권</h3>
                   {Object.values(LOAN_PROVIDERS).map((provider) => (
                       <button
                       key={provider}
