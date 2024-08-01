@@ -5,6 +5,10 @@ import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
 import HeaderNav from './components/ui/HeaderNav'; // HeaderNav 경로를 확인하세요
 import Authentication from './getLoan/authentication.jsx';
 import JobType from './getLoan/jobType.jsx';
+import Collateral from './getLoan/collateral.jsx';
+import Income from './getLoan/income.jsx';
+import Wantloan from './getLoan/wantloan.jsx'
+
 import {
   PRODUCT_NAMES,
   DEFAULT_INTEREST_RATES,
@@ -636,6 +640,9 @@ const initialLoanProducts = [
           <Route path="/" element={<HomePage />} />
           <Route path="/authentication" element={<Authentication />} />
           <Route path="/job-type" element={<JobType />} />
+          <Route path="/collateral" element={<Collateral />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/want-loan" element={<Wantloan />} />
         </Routes>
       </Router>
     </>
