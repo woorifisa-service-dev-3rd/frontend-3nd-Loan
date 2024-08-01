@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './wantloan.css';
 
-const Wantloan = ({ }) => {
-  
+const Wantloan = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/LoanList');
+  }, [navigate]);
 
   return (
-    <>
-      <br/>
-      <br/>
-      <br/>
-      <h1 className="form-heading"> <strong>대출 상품이 매칭되었습니다.</strong></h1>
-      <div>
-      <p className="product-recommend">대출 상품 추천</p>
-        <div>
-
-        </div>
+    <div>
     </div>
-    </>
   );
 };
-    
+
 export default Wantloan;
