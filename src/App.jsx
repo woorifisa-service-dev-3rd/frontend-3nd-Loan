@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useReducer } from 'react'
 import './App.css';
 import './styles/global.css'; // Tailwind와 커스텀 글로벌 CSS 포함
@@ -8,7 +8,7 @@ import JobType from './getLoan/jobType.jsx';
 import Collateral from './getLoan/collateral.jsx';
 import Income from './getLoan/income.jsx';
 import Wantloan from './getLoan/wantloan.jsx'
-import CarNumber from './getLoan/carNumber.jsx';
+import CarNumber from './getLoan/carNumber.jsx'
 import HomeAddress from './getLoan/homeAddress.jsx';
 import {
   PRODUCT_NAMES,
@@ -731,10 +731,8 @@ function App() {
 
   return (
     <>
-
       <Router>
-        <HeaderNav />
-
+        <HeaderNav />  
         <section>
           <LoanContext.Provider value={loans}>
             <LoanDispatchContext.Provider value={dispatch}>
