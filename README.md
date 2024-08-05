@@ -1,4 +1,4 @@
-# <img src="https://github.com/user-attachments/assets/bc3ab2e6-9692-44b0-afaa-de92025bb79e" width="5%">웅렬우 캐피탈
+# <img src="https://github.com/user-attachments/assets/bc3ab2e6-9692-44b0-afaa-de92025bb79e" width="5%">LAK 캐피탈
 대출 및 투자 서비스
 
 ## 팀원
