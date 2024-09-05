@@ -180,11 +180,11 @@ const FilterHeader = ({ onFilter }) => {
                   </button>
                 ))}
               </S.FilterSection>
-            </S.ContentWrapper>
             <S.Footer>
               <button className="reset-button" onClick={handleResetFilter}>필터 초기화</button>
               <button className="loan-button" onClick={handleCloseModal}>{filteredLoans.length}개 대출 보기</button>
             </S.Footer>
+            </S.ContentWrapper>
           </BottomSheet>
         </div>
       )}

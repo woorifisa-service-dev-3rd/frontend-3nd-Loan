@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { LoanContext } from "../../contexts/Loancontext";
-import { LoanItem } from "./LoanItem";
+import { LoanAllItem } from "./LoanAllItem";
 import FilterHeader from "@/components/LoanList/FilterHeader";
 import DefaultLayout from "../../layouts/DefaultLayout";
 
@@ -27,11 +27,11 @@ export const LoanList = () => {
           </DefaultLayout>
           <ul className="px-0 my-0 overflow-y-auto h-full scrollbar-hidden">
             {filteredLoans.map(loan =>
-              <LoanItem key={loan.id} loan={loan} />
+              <LoanAllItem key={loan.id} loan={loan} />
             )}
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 }
