@@ -1,0 +1,100 @@
+/* 전체 페이지 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* 버튼 스타일 */
+.buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 데모 케이스 스타일 */
+.demo-case {
+  display: none; /* 기본적으로 숨김 */
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  max-width: 600px;
+}
+
+.demo-case div {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  transition: all 0.5s ease; /* 부드러운 애니메이션을 위한 전환 */
+}
+
+/* Reflow Bad Case: 요소의 크기 변화가 극단적임 */
+.reflow-bad {
+  background-color: #f8d7da;
+  animation: reflow-bad-animation 2s infinite;
+}
+@keyframes reflow-bad-animation {
+  0% { width: 100px; height: 100px; }
+  50% { width: 400px; height: 400px; } /* 크기를 극단적으로 변경 */
+  100% { width: 100px; height: 100px; }
+}
+
+/* Reflow Good Case: 요소의 크기 고정 */
+.reflow-good {
+  background-color: #d4edda;
+  animation: reflow-good-animation 2s infinite;
+}
+@keyframes reflow-good-animation {
+  0%, 100% { width: 100px; height: 100px; }
+}
+
+/* Repaint Bad Case: 색상이 급격히 변함 */
+.repaint-bad {
+  background-color: red;
+  animation: repaint-bad-animation 2s infinite;
+}
+@keyframes repaint-bad-animation {
+  0%, 100% { background-color: red; }
+  50% { background-color: lime; } /* 극단적인 색상 변화 */
+}
+
+/* Repaint Good Case: 불투명도 변화 */
+.repaint-good {
+  background-color: blue;
+  animation: repaint-good-animation 2s infinite;
+}
+@keyframes repaint-good-animation {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.1; } /* 불투명도를 극단적으로 변경 */
+}
+
+/* Composite Bad Case: 회전 및 이동 효과 */
+.composite-bad {
+  background-color: #f0f0f0;
+  animation: composite-bad-animation 2s infinite;
+}
+@keyframes composite-bad-animation {
+  0% { transform: rotate(0deg) translateX(0); }
+  50% { transform: rotate(360deg) translateX(300px); } /* 극단적인 회전 및 이동 */
+  100% { transform: rotate(0deg) translateX(0); }
+}
+
+/* Composite Good Case: 불투명도 변화 */
+.composite-good {
+  background-color: #f0f0f0;
+  animation: composite-good-animation 2s infinite;
+}
+@keyframes composite-good-animation {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

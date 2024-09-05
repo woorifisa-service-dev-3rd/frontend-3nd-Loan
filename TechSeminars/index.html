@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>렌더링 성능 데모</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .demo-case {
+      display: none;
+      /* 기본적으로 숨김 */
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      max-width: 600px;
+      overflow: hidden;
+      /* 애니메이션 시 초과 영역을 숨김 */
+      text-align: center;
+    }
+
+    .demo-case div {
+      margin: auto;
+      transition: all 0.5s ease;
+    }
+
+    /* Reflow Case */
+    .reflow-case {
+      width: 100px;
+      height: 100px;
+      background-color: #f8d7da;
+      animation: reflow-animation 2s infinite;
+    }
+
+    @keyframes reflow-animation {
+
+      0%,
+      100% {
+        width: 100px;
+        height: 100px;
+      }
+
+      50% {
+        width: 300px;
+        height: 300px;
+      }
+
+      /* 크기 변경으로 Reflow 발생 */
+    }
+
+    /* Repaint Case */
+    .repaint-case {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      animation: repaint-animation 2s infinite;
+    }
+
+    @keyframes repaint-animation {
+
+      0%,
+      100% {
+        background-color: rgb(255, 255, 255);
+        width: 100px;
+        height: 100px;
+      }
+
+      50% {
+        background-color: rgb(200, 200, 200);
+        width: 100px;
+        height: 100px;
+      }
+
+      /* 색상 변경으로 Repaint 발생 */
+    }
+
+    /* Composite Case */
+    .composite-case {
+      width: 100px;
+      height: 100px;
+      background-color: #f0f0f0;
+      animation: composite-animation 2s infinite;
+    }
+
+    @keyframes composite-animation {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(3);
+      }
+
+      /* 크기 변경으로 Composite 발생 */
+    }
+
+    .description {
+      font-size: 23px;
+      /* 폰트 사이즈 업 */
+      margin-top: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+      /* 글씨체 강조 */
+      line-height: 1.5;
+      /* 줄 간격 조정 */
+    }
+
+    .description h2 {
+      font-size: 35px;
+      /* 제목 폰트 사이즈 업 */
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>렌더링 성능 데모</h1>
+  <div class="buttons">
+    <button onclick="showCase('reflow-case')">Reflow Case</button>
+    <button onclick="showCase('repaint-case')">Repaint Case</button>
+    <button onclick="showCase('composite-case')">Composite Case</button>
+  </div>
+  </div>
+  <div id="description" class="description">
+  </div>
+  <div id="demo-container">
+    <section id="reflow-case" class="demo-case">
+      <div class="reflow-case"></div>
+    </section>
+    <section id="repaint-case" class="demo-case">
+      <div class="repaint-case"></div>
+    </section>
+    <section id="composite-case" class="demo-case">
+      <div class="composite-case"></div>
+    </section>
+    <script>
+      // 설명문 데이터
+      const descriptions = {
+        'reflow-case': {
+          title: 'Reflow Case',
+          text: '여기서는 요소의 크기(width와 height)를 변경하여<br> Reflow를 발생시킵니다. Reflow는 레이아웃을 다시 계산하게 만들어 <br>성능에 영향을 줄 수 있습니다.'
+        },
+        'repaint-case': {
+          title: 'Repaint Case',
+          text: '여기서는 요소의 배경색(background-color)을 변경하여 Repaint를 발생시킵니다.<br> Repaint는 시각적 표현만 변경되며 <br>레이아웃은 영향을 받지 않습니다.'
+        },
+        'composite-case': {
+          title: 'Composite Case',
+          text: '여기서는 요소의 크기를 변경하기 위해 <br>transform 속성의 scale을 사용하여 Composite을 발생시킵니다.<br> Composite은 레이어의 합성에 영향을 주며 GPU 가속을 활용할 수 있습니다.'
+        }
+      };
+
+      // 모든 데모 케이스를 숨기는 함수
+      function hideAllCases() {
+        document.querySelectorAll('.demo-case').forEach(function (element) {
+          element.style.display = 'none'; // 모든 데모 케이스 숨김
+        });
+      }
+
+      // 특정 케이스를 표시하는 함수
+      function showCase(caseId) {
+        hideAllCases(); // 다른 케이스 숨김
+        var element = document.getElementById(caseId); // 특정 케이스 선택
+        var descriptionElement = document.getElementById('description'); // 설명문 요소 선택
+        if (element) {
+          element.style.display = 'block'; // 선택된 케이스 표시
+          var description = descriptions[caseId];
+          descriptionElement.innerHTML = `<h2>${description.title}</h2>${description.text}`; // 설명문 및 제목 업데이트
+        }
+      }
+
+      // 페이지 로드 시 첫 번째 케이스를 기본적으로 표시
+      document.addEventListener('DOMContentLoaded', function () {
+        showCase('reflow-case');
+      });
+    </script>
+</body>
+
+</html>
