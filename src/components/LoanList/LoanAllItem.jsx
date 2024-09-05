@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const LoanAllItem = ({ loan }) => {
 
@@ -11,7 +11,7 @@ export const LoanAllItem = ({ loan }) => {
 
   return (
     <div className="flex justify-center items-center py-2 px-4">
-      <a href='/'
+      <Link to={`/loan/${loan.id}`}
         className="w-full max-w-4xl flex gap-4 px-4 py-4 border rounded-lg
         bg-white shadow-xl transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-50">
         <picture className='hidden dark:block'>
@@ -43,7 +43,7 @@ export const LoanAllItem = ({ loan }) => {
             </div>
           </dl>
         </div>
-      </a>
+      </Link>
       <button
         type="button"
         onClick={handleNextClick}

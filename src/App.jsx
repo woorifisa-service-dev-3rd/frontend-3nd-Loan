@@ -25,6 +25,7 @@ import { MemberContext, MemberDispatchContext } from './contexts/MemberContext.j
 import { InvestmentContext, InvestmentDispatchContext } from './contexts/InvestmentContext';
 import { LoanList } from './components/LoanList/LoanList.jsx';
 import { InvestmentList } from './components/Investment/InvestmentList.jsx';
+import { LoanDetail } from './components/LoanList/LoanDetail.jsx';
 
 
 
@@ -70,6 +71,18 @@ function HomePage() {
   const handleButtonClick = () => {
     navigate('/authentication');
   };
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-5xl md:text-7xl font-bold text-center">
+          대출 필요하세요? LAK 캐피탈입니다.
+        </h1>
+        <img src="/public/image.png" alt="Promotion" className="mt-8 w-80 h-auto md:w-1/4"
+        />
+        {/* 버튼 예시 */}
+      </div>
+    </>
+  );
 }
 
 // 회원의 신용도 렌덤점수 할당 함수 ( 회원 조회시 마다 할당 )
@@ -808,6 +821,8 @@ function App() {
                         <Route path="/want-loan" element={<Wantloan />} />
                         <Route path="/LoanList" element={<LoanList />} />
                         <Route path="/InvestmentList" element={<InvestmentList />} />
+                        <Route path="/loan/:loanId" element={<LoanDetail />} />
+
                       </Routes>
 
                     </InvestmentDispatchContext.Provider>

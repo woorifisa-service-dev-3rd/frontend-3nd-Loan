@@ -12,7 +12,7 @@ const Income = () => {
 
     setTimeout(() => {
       navigate('/want-loan'); 
-    }, 2000); 
+    }, 1500); 
   };
 
   return (
